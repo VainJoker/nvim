@@ -2,6 +2,7 @@ local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
 end
+local navic = require("nvim-navic")
 local symbols_outline = {
 	sections = {
 		lualine_a = { "mode" },
@@ -24,6 +25,9 @@ lualine.setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { { "branch" }, { "diff" } },
+		lualine_c = {
+			{ navic.get_location, cond = navic.is_available },
+		},
 		lualine_x = {
 			{
 				"diagnostics",

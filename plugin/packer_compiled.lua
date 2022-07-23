@@ -186,11 +186,6 @@ _G.packer_plugins = {
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
-  ["formatter.nvim"] = {
-    loaded = true,
-    path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/formatter.nvim",
-    url = "https://github.com/mhartington/formatter.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -348,11 +343,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
-  },
-  nvim_context_vt = {
-    loaded = true,
-    path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/nvim_context_vt",
-    url = "https://github.com/haringsrob/nvim_context_vt"
   },
   ["onedarkpro.nvim"] = {
     loaded = true,

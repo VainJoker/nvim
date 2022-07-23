@@ -81,9 +81,10 @@ local opts = {
 local mappings = {
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
-	["/"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["m"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	-- ["T"] = { "<cmd>lua require('FTerm').toggle()<CR>", "Toggle Terminal" },
 	["S"] = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	-- ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover Doc" },
 
 	b = {
@@ -104,7 +105,6 @@ local mappings = {
 		["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "Select Buffer 9" },
 	},
 
-	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 
 	f = {
 		name = "Find",

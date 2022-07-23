@@ -65,22 +65,15 @@ return packer.startup(function(use)
 		module = "copilot_cmp",
 		requires = { "zbirenbaum/copilot.lua" },
 	})
-
+	-- Treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+	})
 	-- Colorschemes
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
 	})
-	use("lunarvim/darkplus.nvim")
-	use("sainnhe/edge")
-	use({
-		"olimorris/onedarkpro.nvim",
-	})
-	use({
-		"meliora-theme/neovim",
-		requires = { "rktjmp/lush.nvim" },
-	})
-
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
@@ -89,11 +82,9 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua" })
 	use({ "hrsh7th/cmp-cmdline" })
-
 	-- snippets
 	use({ "L3MON4D3/LuaSnip" }) --snippet engine
 	use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
-
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
@@ -101,10 +92,6 @@ return packer.startup(function(use)
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
 
-	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-	})
 
 	use("simrat39/rust-tools.nvim")
 	use("Saecki/crates.nvim")
@@ -128,11 +115,9 @@ return packer.startup(function(use)
 	use("p00f/nvim-ts-rainbow")
 	use("monaqa/dial.nvim")
 	use("Pocco81/HighStr.nvim")
-	use("haringsrob/nvim_context_vt")
 	use("ethanholz/nvim-lastplace")
 	use("h-hg/fcitx.nvim")
 	use({ "anuvyklack/pretty-fold.nvim" })
-	use({ "mhartington/formatter.nvim" })
 	use("famiu/bufdelete.nvim")
 	use("AckslD/nvim-neoclip.lua")
 	use("karb94/neoscroll.nvim")
