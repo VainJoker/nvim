@@ -1,9 +1,9 @@
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
-  return
+	return
 end
 
-require "init-lsp.configs"
+require("init-lsp.configs")
 require("init-lsp.handlers").setup()
-require "init-lsp.null-ls"
-require"fidget".setup{}
+require("init-lsp.null-ls")
+require("fidget").setup({})

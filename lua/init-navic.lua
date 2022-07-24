@@ -5,4 +5,3 @@ vim.g.navic_silence = true
 --        navic.attach(client, bufnr)
 --    end
 --}
-

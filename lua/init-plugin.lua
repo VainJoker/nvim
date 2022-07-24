@@ -49,31 +49,22 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 	use({ "goolord/alpha-nvim" })
 	use("folke/which-key.nvim")
+	use("anuvyklack/hydra.nvim")
+	use("nvim-neorg/neorg")
+	use("folke/zen-mode.nvim")
 	use("simrat39/symbols-outline.nvim")
 	use("j-hui/fidget.nvim")
-	use({
-		"weilbith/nvim-code-action-menu",
-		cmd = "CodeActionMenu",
-	})
+	use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
 	use({ "ellisonleao/glow.nvim" })
 	use("m-demare/hlargs.nvim")
 	use({ "windwp/nvim-autopairs" })
 	use("kylechui/nvim-surround")
 	use("folke/trouble.nvim")
-	use({
-		"zbirenbaum/copilot-cmp",
-		module = "copilot_cmp",
-		requires = { "zbirenbaum/copilot.lua" },
-	})
+	use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp", requires = { "zbirenbaum/copilot.lua" } })
 	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-	})
+	use({ "nvim-treesitter/nvim-treesitter" })
 	-- Colorschemes
-	use({
-		"catppuccin/nvim",
-		as = "catppuccin",
-	})
+	use({ "catppuccin/nvim" })
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
@@ -88,11 +79,8 @@ return packer.startup(function(use)
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
-
-
 	use("simrat39/rust-tools.nvim")
 	use("Saecki/crates.nvim")
 	use("vuki656/package-info.nvim")
@@ -102,15 +90,12 @@ return packer.startup(function(use)
 	use("rcarriga/nvim-notify")
 	use({ "stevearc/dressing.nvim" })
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
-	use({
-		"SmiteshP/nvim-navic",
-	})
+	use({ "SmiteshP/nvim-navic" })
 	use("yamatsum/nvim-cursorline")
 	use("lewis6991/gitsigns.nvim")
 	use({ "edluffy/specs.nvim" })
 	use({ "michaelb/sniprun", run = "bash ./install.sh" })
 	use({ "kevinhwang91/nvim-hlslens" })
-	use({ "Abstract-IDE/penvim" })
 	use("windwp/nvim-ts-autotag")
 	use("p00f/nvim-ts-rainbow")
 	use("monaqa/dial.nvim")

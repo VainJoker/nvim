@@ -2,7 +2,21 @@ local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
 	return
 end
-
+-- wk.show = function(keys, opts)
+-- 	if vim.bo.filetype == "TelescopePrompt" then
+-- 		return
+-- 	end
+-- 	show(keys, opts)
+-- end
+local show = which_key.show
+which_key.show = function(keys, opts)
+	if vim.bo.filetype == "norg" and vim.bo.buftype == "nofile" then
+		local map = "<c-r>"
+		local key = vim.api.nvim_replace_termcodes(map, true, false, true)
+		vim.api.nvim_feedkeys(key, "i", true)
+	end
+	show(keys, opts)
+end
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -105,7 +119,6 @@ local mappings = {
 		["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "Select Buffer 9" },
 	},
 
-
 	f = {
 		name = "Find",
 		f = {
@@ -116,7 +129,16 @@ local mappings = {
 		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 		p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		c = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
+		c = { "lua require('telescope').extensions.neoclip.default()", "Clipboard" },
+	},
+
+	o = {
+		name = "OrgMode",
+		a = { "<cmd>Neorg gtd views<cr>", "Views" },
+		c = { "<cmd>Neorg gtd capture<cr>", "Capture" },
+		o = { "<cmd>Neorg export<cr>", "Export" },
+		j = { "<cmd>Neorg journal<cr>", "Journal" },
+		-- p = { "<cmd>Neorg <cr>", "Projects" },}
 	},
 
 	p = {
@@ -151,9 +173,12 @@ local mappings = {
 		},
 	},
 
+	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
 	l = {
 		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action<cr>", "Code Action" },
+		a = { "<cmd>CodeActionMenu<cr>", "Code Action" },
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
 			"Diagnostics",
@@ -161,6 +186,10 @@ local mappings = {
 		d = {
 			"<cmd>lua vim.lsp.buf.definition()<cr>",
 			"GO TO Definition",
+		},
+		D = {
+			"<cmd>lua vim.lsp.buf.declaration()<cr>",
+			"GO TO Declaration",
 		},
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
@@ -174,7 +203,7 @@ local mappings = {
 			"Prev Diagnostic",
 		},
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 		S = {
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -193,13 +222,14 @@ local mappings = {
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
-	t = {
+	x = {
 		name = "Trouble",
-		t = { "<cmd>Trouble<cr>", "ToggleTrouble" },
+		x = { "<cmd>TroubleToggle<cr>", "ToggleTrouble" },
 		d = { "<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics" },
 		w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 		q = { "<cmd>Trouble quickfix<cr>", "Quick Fix" },
 		u = { "<cmd>Trouble lsp_references<cr>", "Usage" },
+		l = { "<cmd>Trouble loclist<cr>", "Loclist" },
 	},
 }
 
