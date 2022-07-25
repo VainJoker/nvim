@@ -64,7 +64,7 @@ return packer.startup(function(use)
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter" })
 	-- Colorschemes
-	use({ "catppuccin/nvim" })
+	use({ "catppuccin/nvim" , as = "catppuccin"})
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
