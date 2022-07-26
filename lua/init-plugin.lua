@@ -60,6 +60,7 @@ return packer.startup(function(use)
 	use({ "windwp/nvim-autopairs" })
 	use("kylechui/nvim-surround")
 	use("folke/trouble.nvim")
+  use("nkakouros-original/numbers.nvim")
 	use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp", requires = { "zbirenbaum/copilot.lua" } })
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter" })

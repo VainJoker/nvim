@@ -13,6 +13,7 @@ require("init-highstr") --highlig str
 require("init-alpha")
 require("init-hlslens")
 -- require("init-navic")
+require("init-numbers")
 require("init-rust")
 require("init-neoclips")
 require("init-zenmode")

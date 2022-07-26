@@ -241,6 +241,11 @@ _G.packer_plugins = {
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
+  ["numbers.nvim"] = {
+    loaded = true,
+    path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/numbers.nvim",
+    url = "https://github.com/nkakouros-original/numbers.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
