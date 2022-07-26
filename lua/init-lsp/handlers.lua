@@ -80,7 +80,9 @@ M.on_attach = function(client, bufnr)
 	end
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
-	lsp_location(client, bufnr)
+  if client.name ~= ("null-ls" or "copilot") then
+    lsp_location(client, bufnr)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

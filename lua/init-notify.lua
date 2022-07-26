@@ -4,6 +4,15 @@ if not status_ok then
 	return
 end
 vim.notify = notify
+
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
+
 notify.setup({
 	-- Animation style (see below for details)
 	stages = "fade_in_slide_out",

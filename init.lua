@@ -12,7 +12,7 @@ require("init-autocommants")
 require("init-highstr") --highlig str
 require("init-alpha")
 require("init-hlslens")
-require("init-navic")
+-- require("init-navic")
 require("init-rust")
 require("init-neoclips")
 require("init-zenmode")
