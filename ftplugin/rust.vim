@@ -1,1 +1,2 @@
-nnoremap <buffer> <leader>r :RustHoverAction<cr>
+nnoremap <buffer> <leader>ra :RustHoverAction<cr>
+nnoremap <buffer> <leader>rc :RustOpenCargo<cr>

@@ -10,7 +10,7 @@ end
 -- end
 local show = which_key.show
 which_key.show = function(keys, opts)
-	if vim.bo.filetype == "norg" and vim.bo.buftype == "nofile" then
+	if vim.bo.filetype == "norg" then
 		local map = "<c-r>"
 		local key = vim.api.nvim_replace_termcodes(map, true, false, true)
 		vim.api.nvim_feedkeys(key, "i", true)
@@ -100,7 +100,6 @@ local mappings = {
 	["S"] = { "<cmd>SymbolsOutline<CR>", "SymbolsOutline" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	-- ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover Doc" },
-
 	b = {
 		name = "Buffer",
 		b = {
@@ -119,28 +118,6 @@ local mappings = {
 		["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "Select Buffer 9" },
 	},
 
-	f = {
-		name = "Find",
-		f = {
-			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-			"Find files",
-		},
-		d = { "<cmd>TodoTelescope<cr>", "Todos" },
-		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-		p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		c = { "lua require('telescope').extensions.neoclip.default()", "Clipboard" },
-	},
-
-	o = {
-		name = "OrgMode",
-		a = { "<cmd>Neorg gtd views<cr>", "Views" },
-		c = { "<cmd>Neorg gtd capture<cr>", "Capture" },
-		o = { "<cmd>Neorg export<cr>", "Export" },
-		j = { "<cmd>Neorg journal<cr>", "Journal" },
-		-- p = { "<cmd>Neorg <cr>", "Projects" },}
-	},
-
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -149,32 +126,6 @@ local mappings = {
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
-
-	g = {
-		name = "Git",
-		g = { "<cmd>lua __fterm_gitui()<CR>", "Gitui" },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			"Undo Stage Hunk",
-		},
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff",
-		},
-	},
-
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 	l = {
 		name = "LSP",

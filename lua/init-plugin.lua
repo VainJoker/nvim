@@ -60,12 +60,13 @@ return packer.startup(function(use)
 	use({ "windwp/nvim-autopairs" })
 	use("kylechui/nvim-surround")
 	use("folke/trouble.nvim")
-  use("nkakouros-original/numbers.nvim")
+	use("nkakouros-original/numbers.nvim")
+	use("TimUntersberger/neogit")
 	use({ "zbirenbaum/copilot-cmp", module = "copilot_cmp", requires = { "zbirenbaum/copilot.lua" } })
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter" })
 	-- Colorschemes
-	use({ "catppuccin/nvim" , as = "catppuccin"})
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions

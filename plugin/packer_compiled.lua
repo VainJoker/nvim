@@ -226,6 +226,11 @@ _G.packer_plugins = {
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
+  },
   neorg = {
     loaded = true,
     path = "/home/vainjoker/.local/share/nvim/site/pack/packer/start/neorg",
