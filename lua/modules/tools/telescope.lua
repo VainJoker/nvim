@@ -1,4 +1,4 @@
-local telescope = Prequire('telescope')
+local telescope = require('telescope')
 telescope.setup({
   defaults = {
     layout_config = {

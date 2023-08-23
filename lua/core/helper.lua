@@ -35,15 +35,4 @@ function helper.get_merge(a, b)
   return c
 end
 
-
-function Prequire(...)
-  local status, lib = pcall(require, ...)
-  if status then
-    return lib
-  else
-    vim.notify('Failed to load: ' .. ...)
-    return
-  end
-end
-
 return helper

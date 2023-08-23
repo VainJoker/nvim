@@ -1,7 +1,7 @@
 local config = {}
 
 function config.cokeline()
-  Prequire('modules.ui.cokeline')
+  prequire('modules.ui.cokeline')
   local map = vim.api.nvim_set_keymap
 
   -- map('n', '<S-Tab>', '<Plug>(cokeline-focus-prev)', { silent = true })
@@ -13,7 +13,7 @@ function config.cokeline()
   end
 end
 function config.feline()
-  Prequire('modules.ui.feline')
+  prequire('modules.ui.feline')
 end
 function config.noice()
   require('modules.ui.noice')
@@ -22,23 +22,23 @@ end
 --  vim.cmd([[colorscheme tokyonight]])
 --end
 --function config.cursorline() -- TODO
---  Prequire('nvim-cursorline').setup()
+--  prequire('nvim-cursorline').setup()
 --end
 function config.barbecue()
-  Prequire('barbecue').setup({
+  prequire('barbecue').setup({
     include_buftypes = { '' },
   })
 end
 function config.notify()
-  Prequire('notify').setup({
+  prequire('notify').setup({
     background_colour = '#000000',
   })
 end
 --function config.nvimcontextvt()
---  Prequire('nvim_context_vt').setup({})
+--  prequire('nvim_context_vt').setup({})
 --end
 function config.numbers()
-  Prequire('numbers').setup({
+  prequire('numbers').setup({
     excluded_filetypes = {
       'Neotree',
       'neo-tree',
@@ -51,7 +51,7 @@ function config.numbers()
 end
 
 function config.transparent()
-  Prequire('transparent').setup({
+  prequire('transparent').setup({
     enable = false, -- boolean: enable transparent
     extra_groups = { -- table/string: additional groups that should be cleared
       'all',
@@ -60,7 +60,7 @@ function config.transparent()
   })
 end
 function config.specs()
-  Prequire('specs').setup({
+  prequire('specs').setup({
     show_jumps = true,
     min_jump = 30,
     popup = {
@@ -69,8 +69,8 @@ function config.specs()
       blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
       width = 10,
       winhl = 'PMenu',
-      fader = Prequire('specs').linear_fader,
-      resizer = Prequire('specs').shrink_resizer,
+      fader = prequire('specs').linear_fader,
+      resizer = prequire('specs').shrink_resizer,
     },
     ignore_filetypes = {},
     ignore_buftypes = {
@@ -79,7 +79,7 @@ function config.specs()
   })
 end
 function config.todocomment()
-  Prequire('todo-comments').setup({
+  prequire('todo-comments').setup({
     highlight = {
       pattern = [[.*<(KEYWORDS)\s*]],
     },

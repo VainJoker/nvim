@@ -1,0 +1,35 @@
+---- Lua
+--vim.keymap.set('n', '<leader>xx', function()
+--  require('trouble').open()
+--end)
+--vim.keymap.set('n', '<leader>xw', function()
+--  require('trouble').open('workspace_diagnostics')
+--end)
+--vim.keymap.set('n', '<leader>xd', function()
+--  require('trouble').open('document_diagnostics')
+--end)
+--vim.keymap.set('n', '<leader>xq', function()
+--  require('trouble').open('quickfix')
+--end)
+--vim.keymap.set('n', '<leader>xl', function()
+--  require('trouble').open('loclist')
+--end)
+--vim.keymap.set('n', 'gR', function()
+--  require('trouble').open('lsp_references')
+--end)
+---- restore the session for the current directory
+--vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+--
+---- restore the last session
+--vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
+--
+---- stop Persistence => session won't be saved on exit
+--vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+--
+--  keys = {
+--    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+--    { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+--    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+--    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+--    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+--  },

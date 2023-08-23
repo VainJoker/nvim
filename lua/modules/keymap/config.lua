@@ -64,7 +64,7 @@ end
 
 function config.keymapamend()
   local keymap = vim.keymap
-  keymap.amend = Prequire('keymap-amend')
+  keymap.amend = require('keymap-amend')
   keymap.amend('n', '<Esc>', function(original)
     if vim.v.hlsearch and vim.v.hlsearch == 1 then
       vim.cmd('nohlsearch')
@@ -74,7 +74,7 @@ function config.keymapamend()
 end
 
 function config.legendary()
-  Prequire('legendary').setup({
+  require('legendary').setup({
 
     keymaps = {
       -- map keys to a command

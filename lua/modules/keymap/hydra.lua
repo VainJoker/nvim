@@ -1,5 +1,5 @@
 local Hydra = require('hydra')
---local splits = prequire('smart-splits')
+--local splits = require('smart-splits')
 
 local cmd = require('hydra.keymap-util').cmd
 local pcmd = require('hydra.keymap-util').pcmd

@@ -1,12 +1,12 @@
 local config = {}
 function config.telescope()
-  Prequire('modules.tools.telescope')
+  require('modules.tools.telescope')
 end
 function config.leap()
-  Prequire('leap').add_default_mappings()
+  require('leap').add_default_mappings()
 end
 function config.comment()
-  Prequire('nvim_comment').setup({
+  require('nvim_comment').setup({
     create_mappings = false,
     hook = function()
       require('ts_context_commentstring.internal').update_commentstring()
@@ -14,10 +14,10 @@ function config.comment()
   })
 end
 function config.neogit()
-  Prequire('neogit').setup()
+  require('neogit').setup()
 end
 function config.dap()
-  Prequire('modules.tools.dap')
+  require('modules.tools.dap')
 end
 function config.dapui()
   require('dapui').setup({})
@@ -26,7 +26,7 @@ function config.dapvirtualtext()
   require('nvim-dap-virtual-text').setup()
 end
 function config.cinnamon()
-  Prequire('cinnamon').setup({
+  require('cinnamon').setup({
     extra_keymaps = true,
     override_keymaps = true,
     max_length = 500,
@@ -34,13 +34,13 @@ function config.cinnamon()
   })
 end
 function config.pantran()
-  Prequire('pantran').setup({
+  require('pantran').setup({
     default_engine = 'deepl',
     engines = {
       yandex = {
         -- Default languages can be defined on a per engine basis. In this case
-        -- `:lua Prequire("pantran.async").run(function()
-        -- vim.pretty_print(Prequire("pantran.engines").yandex:languages()) end)`
+        -- `:lua require("pantran.async").run(function()
+        -- vim.pretty_print(require("pantran.engines").yandex:languages()) end)`
         -- can be used to list available language identifiers.
         default_source = 'auto',
         default_target = 'cn',
@@ -49,7 +49,7 @@ function config.pantran()
   })
 end
 function config.lastplace()
-  Prequire('nvim-lastplace').setup({
+  require('nvim-lastplace').setup({
     lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
     lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
     lastplace_open_folds = true,
@@ -57,11 +57,11 @@ function config.lastplace()
 end
 
 function config.betterescape()
-  Prequire('better_escape').setup({})
+  require('better_escape').setup({})
 end
 
 function config.windows()
-  Prequire('windows').setup({
+  require('windows').setup({
     autowidth = { --		       |windows.autowidth|
       enable = true,
       winwidth = 5, --		        |windows.winwidth|
@@ -83,7 +83,7 @@ function config.windows()
 end
 
 function config.imselect()
-  Prequire('im_select').setup({
+  require('im_select').setup({
     -- IM will be set to `default_im_select` in `normal` mode(`EnterVim` or `InsertLeave`)
     -- For Windows, default: "1003", aka: English US Keyboard
     -- You can use `im-select` in cli to get the IM name of you preferred
@@ -95,7 +95,7 @@ function config.imselect()
 end
 
 function config.neotree()
-  Prequire('neo-tree').setup({
+  require('neo-tree').setup({
     close_if_last_window = true,
     enable_diagnostics = true,
     source_selector = {
@@ -122,6 +122,24 @@ function config.neotree()
         end,
       },
     },
+  })
+end
+
+function config.nvimwindpicker()
+  require('window-picker').setup({
+    autoselect_one = true,
+    include_current = false,
+    filter_rules = {
+      -- filter using buffer options
+      bo = {
+        -- if the file type is one of following, the window will be ignored
+        filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+
+        -- if the buffer type is one of following, the window will be ignored
+        buftype = { 'terminal', 'quickfix' },
+      },
+    },
+    other_win_hl_color = '#e35e4f',
   })
 end
 

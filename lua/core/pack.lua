@@ -1,6 +1,7 @@
 local helper = require('core.helper')
 local data_dir = string.format('%s/site/', helper.get_data_path())
 local lazypath = data_dir .. '/lazy/lazy.nvim'
+local vim = vim
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({

@@ -1,4 +1,4 @@
-local feline = Prequire('feline')
+local feline = require('feline')
 
 local one_monokai = {
   fg = '#abb2bf',

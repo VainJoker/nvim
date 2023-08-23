@@ -1,11 +1,11 @@
 local config = {}
 
 function config.cmp()
-  Prequire('modules.completion.cmp')
+  require('modules.completion.cmp')
 end
 
 function config.copilot()
-  Prequire('copilot').setup({
+  require('copilot').setup({
     suggestion = {
       enabled = true,
       auto_trigger = true,
@@ -65,7 +65,7 @@ function config.treesj()
 end
 
 function config.autopairs()
-  Prequire('modules.completion.autopairs')
+  require('modules.completion.autopairs')
 end
 
 function config.autotag()
@@ -75,11 +75,11 @@ function config.autotag()
 end
 
 function config.lspzero()
-  Prequire('modules.completion.lspzero')
+  require('modules.completion.lspzero')
 end
 
 function config.tabnine()
-  local tabnine = Prequire('cmp_tabnine.config')
+  local tabnine = require('cmp_tabnine.config')
   tabnine:setup({
     max_lines = 1000,
     max_num_results = 20,

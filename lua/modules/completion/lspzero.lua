@@ -1,6 +1,6 @@
-local lsp = Prequire('lsp-zero')
+local lsp = require('lsp-zero')
 lsp.preset({
-    manage_nvim_cmp = false,
+  manage_nvim_cmp = false,
 })
--- prequire('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+-- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()

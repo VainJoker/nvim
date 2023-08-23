@@ -1,7 +1,7 @@
 local config = {}
 
 function config.lspsaga()
-  Prequire('lspsaga').setup({
+  prequire('lspsaga').setup({
     outline = {
       win_position = 'right',
       win_with = '',
@@ -78,7 +78,7 @@ function config.lspsaga()
     end,
   })
   --
-  -- Prequire('lspsaga').init_lsp_saga({
+  -- prequire('lspsaga').init_lsp_saga({
   --   show_outline = {
   --     auto_enter = false,
   --     auto_preview = false,
@@ -87,7 +87,7 @@ function config.lspsaga()
 end
 
 function config.rust()
-  -- Prequire('rust-tools').setup()
+  -- prequire('rust-tools').setup()
   -- Update this path
   -- local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/'
   -- local codelldb_path = extension_path .. 'adapter/codelldb'
@@ -101,15 +101,15 @@ function config.rust()
   --   }
   -- }
   -- Normal setup
-  Prequire('rust-tools').setup()
+  prequire('rust-tools').setup()
 end
 
 function config.go()
-  Prequire('go').setup()
+  prequire('go').setup()
 end
 
 function config.treesitter()
-  Prequire('nvim-treesitter.configs').setup({
+  prequire('nvim-treesitter.configs').setup({
     -- A list of parser names, or "all"
     ensure_installed = 'all',
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -132,7 +132,7 @@ function config.treesitter()
 end
 
 function config.neorg()
-  Prequire('neorg').setup({
+  prequire('neorg').setup({
     -- Tell Neorg what modules to load
     load = {
       ['core.defaults'] = {}, -- Load all the default modules
