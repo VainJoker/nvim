@@ -13,6 +13,19 @@ prequire('noice').setup({
       enabled = false,
     },
   },
+  routes = {
+    {
+      filter = {
+        event = 'msg_show',
+        any = {
+          { find = '%d+L, %d+B' },
+          { find = '; after #%d+' },
+          { find = '; before #%d+' },
+        },
+      },
+      view = 'mini',
+    },
+  },
   -- you can enable a preset for easier configuration
   presets = {
     bottom_search = false, -- use a classic bottom cmdline for search

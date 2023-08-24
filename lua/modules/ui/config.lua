@@ -18,6 +18,59 @@ end
 function config.noice()
   require('modules.ui.noice')
 end
+
+function config.rainbow()
+  -- This module contains a number of default definitions
+  local rainbow_delimiters = require('rainbow-delimiters')
+
+  vim.g.rainbow_delimiters = {
+    strategy = {
+      [''] = rainbow_delimiters.strategy['global'],
+      vim = rainbow_delimiters.strategy['local'],
+    },
+    query = {
+      [''] = 'rainbow-delimiters',
+      lua = 'rainbow-blocks',
+    },
+    highlight = {
+      'RainbowDelimiterRed',
+      'RainbowDelimiterYellow',
+      'RainbowDelimiterBlue',
+      'RainbowDelimiterOrange',
+      'RainbowDelimiterGreen',
+      'RainbowDelimiterViolet',
+      'RainbowDelimiterCyan',
+    },
+  }
+end
+
+function config.indentline()
+  require('indent_blankline').setup({
+    char = '│',
+    filetype_exclude = {
+      'help',
+      'alpha',
+      'dashboard',
+      'neo-tree',
+      'Trouble',
+      'lazy',
+      'mason',
+      'notify',
+      'toggleterm',
+      'lazyterm',
+    },
+    show_trailing_blankline_indent = false,
+    show_current_context = false,
+  })
+end
+
+function config.indentscope()
+  require('mini.indentscope').setup({
+    symbol = '│',
+    options = { try_as_border = true },
+  })
+end
+
 --function config.colorscheme()
 --  vim.cmd([[colorscheme tokyonight]])
 --end

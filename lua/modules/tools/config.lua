@@ -6,11 +6,12 @@ function config.leap()
   require('leap').add_default_mappings()
 end
 function config.comment()
-  require('nvim_comment').setup({
-    create_mappings = false,
-    hook = function()
-      require('ts_context_commentstring.internal').update_commentstring()
-    end,
+  require('mini.comment').setup({
+    options = {
+      custom_commentstring = function()
+        return require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+      end,
+    },
   })
 end
 function config.neogit()
@@ -95,34 +96,15 @@ function config.imselect()
 end
 
 function config.neotree()
+  vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+  vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+  vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+  vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+
   require('neo-tree').setup({
-    close_if_last_window = true,
-    enable_diagnostics = true,
-    source_selector = {
-      winbar = true,
-      content_layout = 'center',
-    },
-    default_component_configs = {
-      indent = { padding = 0 },
-    },
-    window = {
-      width = 30,
-    },
-    filesystem = {
-      follow_current_file = true,
-      hijack_netrw_behavior = 'open_current',
-      use_libuv_file_watcher = true,
-      window = { mappings = { h = 'toggle_hidden' } },
-    },
-    event_handlers = {
-      {
-        event = 'neo_tree_buffer_enter',
-        handler = function(_)
-          vim.opt_local.signcolumn = 'auto'
-        end,
-      },
-    },
+    close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
   })
+  vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 end
 
 function config.nvimwindpicker()

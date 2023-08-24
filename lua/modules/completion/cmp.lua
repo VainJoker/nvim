@@ -1,5 +1,8 @@
+local vim = vim
 local cmp_status_ok, cmp = pcall(require, 'cmp')
 local compare = require('cmp.config.compare')
+local defaults = require('cmp.config.default')()
+local types = require('luasnip.util.types')
 
 if not cmp_status_ok then
   return
@@ -10,7 +13,27 @@ if not snip_status_ok then
   return
 end
 
+luasnip.setup({
+  history = true,
+  region_check_events = 'CursorHold,InsertLeave',
+  -- those are for removing deleted snippets, also a common problem
+  delete_check_events = 'TextChanged,InsertEnter',
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { '●', 'GruvboxOrange' } },
+      },
+    },
+    [types.insertNode] = {
+      active = {
+        virt_text = { { '●', 'GruvboxBlue' } },
+      },
+    },
+  },
+})
+
 local has_words_before = function()
+  unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
@@ -20,6 +43,8 @@ local t = function(str)
 end
 
 require('luasnip/loaders/from_vscode').lazy_load()
+
+vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
 
 -- local check_backspace = function()
 --   local col = vim.fn.col "." - 1
@@ -74,8 +99,10 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 cmp.setup({
+  completion = {
+    completeopt = 'menu,menuone,noselect',
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -97,8 +124,8 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-        -- elseif luasnip.expand_or_jumpable() then
-        --   luasnip.expand_or_jump()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -115,35 +142,22 @@ cmp.setup({
         fallback()
       end
     end, { 'i', 's' }),
-    ['<C-k>'] = function(fallback)
-      if require('luasnip').jumpable(-1) then
-        vim.fn.feedkeys(t('<Plug>luasnip-jump-prev'), '')
-      else
-        fallback()
-      end
-    end,
-    ['<C-j>'] = function(fallback)
-      if require('luasnip').expand_or_jumpable() then
-        vim.fn.feedkeys(t('<Plug>luasnip-expand-or-jump'), '')
-      else
-        fallback()
-      end
-    end,
+    --['<C-k>'] = cmp.mapping(function(fallback)
+    --  if luasnip.jumpable(-1) then
+    --    luasnip.expand_or_jump()
+    --  else
+    --    fallback()
+    --  end
+    --end,{ 'i', 's' }),
+    --['<C-j>'] = cmp.mapping(function(fallback)
+    --  if luasnip.expand_or_locally_jumpable() then
+    --    luasnip.expand_or_jump()
+    --  else
+    --    fallback()
+    --  end
+    --end,{ 'i', 's' })
   },
-  sorting = {
-    priority_weight = 2,
-    comparators = {
-      require('cmp_tabnine.compare'),
-      compare.offset,
-      compare.exact,
-      compare.score,
-      compare.recently_used,
-      compare.kind,
-      compare.sort_text,
-      compare.length,
-      compare.order,
-    },
-  },
+  sorting = defaults.sorting,
   formatting = {
     fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
@@ -158,7 +172,6 @@ cmp.setup({
         path = '[PATH]',
         luasnip = '[SNIP]',
       })[entry.source.name]
-
       if entry.source.name == 'cmp_tabnine' then
         -- local detail = (entry.completion_item.data or {}).detail
         vim_item.kind = ''
@@ -198,8 +211,9 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   experimental = {
-    ghost_text = false,
-    native_menu = false,
+    ghost_text = {
+      hl_group = 'CmpGhostText',
+    },
   },
 })
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

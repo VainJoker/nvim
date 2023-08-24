@@ -34,3 +34,21 @@ vim.g.mapleader = ' '
 
 vim.api.nvim_set_keymap('n', ' ', '', { noremap = true })
 vim.api.nvim_set_keymap('x', ' ', '', { noremap = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'help',
+    'alpha',
+    'dashboard',
+    'neo-tree',
+    'Trouble',
+    'lazy',
+    'mason',
+    'notify',
+    'toggleterm',
+    'lazyterm',
+  },
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end,
+})
