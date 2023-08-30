@@ -77,31 +77,30 @@ function config.lspsaga()
       end
     end,
   })
-  --
-  -- prequire('lspsaga').init_lsp_saga({
-  --   show_outline = {
-  --     auto_enter = false,
-  --     auto_preview = false,
-  --   },
-  -- })
 end
 
 function config.rust()
-  -- prequire('rust-tools').setup()
-  -- Update this path
-  -- local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/'
-  -- local codelldb_path = extension_path .. 'adapter/codelldb'
-  -- local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'  -- MacOS: This may be .dylib
-  -- -- print(extension_path, codelldb_path, liblldb_path)
-  -- local opts = {
-  --   -- ... other configs
-  --   dap = {
-  --     adapter = require('rust-tools.dap').get_codelldb_adapter(
-  --     codelldb_path, liblldb_path)
-  --   }
-  -- }
-  -- Normal setup
-  prequire('rust-tools').setup()
+  local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/'
+  local codelldb_path = extension_path .. 'adapter/codelldb'
+  local liblldb_path = vim.fn.has('mac') == 1 and extension_path .. 'lldb/lib/liblldb.dylib'
+    or extension_path .. 'lldb/lib/liblldb.so'
+  local adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+  prequire('rust-tools').setup({
+    dap = {
+      adapter = adapter,
+    },
+    tools = {
+      on_initialized = function()
+        vim.cmd([[
+        augroup RustLSP
+        autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+        autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+        augroup END
+        ]])
+      end,
+    },
+  })
 end
 
 function config.go()
@@ -120,45 +119,14 @@ function config.treesitter()
     highlight = {
       enable = true,
     },
-    rainbow = {
-      enable = true,
-      -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-      extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-      max_file_lines = nil, -- Do not enable for files with more than n lines, int
-      -- colors = {}, -- table of hex strings
-      -- termcolors = {} -- table of colour name strings
-    },
-  })
-end
-
-function config.neorg()
-  prequire('neorg').setup({
-    -- Tell Neorg what modules to load
-    load = {
-      ['core.defaults'] = {}, -- Load all the default modules
-      ['core.keybinds'] = {},
-      ['core.norg.completion'] = {
-        config = {
-          engine = 'nvim-cmp',
-        },
-      },
-      ['core.norg.concealer'] = {}, -- Allows for use of icons
-      ['core.export'] = {},
-      ['core.export.markdown'] = {
-        config = {
-          extensions = 'all',
-        },
-      },
-      ['core.fs'] = {},
-      --['core.gtd.base'] = {},
-      ['core.norg.dirman'] = { -- Manage your directories with Neorg
-        config = {
-          workspaces = {
-            my_workspace = '~/neorg',
-          },
-        },
-      },
-    },
+    --rainbow = {
+    --  enable = true,
+    --  -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    --  extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    --  max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    --  -- colors = {}, -- table of hex strings
+    --  -- termcolors = {} -- table of colour name strings
+    --},
   })
 end
 

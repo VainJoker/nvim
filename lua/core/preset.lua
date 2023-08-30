@@ -2,6 +2,8 @@ local vim = vim
 local home = os.getenv('HOME')
 local cache_dir = home .. '/.cache/nvim/';
 
+--vim.loader.enable()
+
 (function()
   local data_dir = {
     cache_dir .. 'backup',
@@ -31,6 +33,7 @@ function _G.prequire(...)
 end
 
 vim.g.mapleader = ' '
+vim.g.startuptime_tries = 10
 
 vim.api.nvim_set_keymap('n', ' ', '', { noremap = true })
 vim.api.nvim_set_keymap('x', ' ', '', { noremap = true })
@@ -52,3 +55,5 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.b.miniindentscope_disable = true
   end,
 })
+
+vim.loader.enable()

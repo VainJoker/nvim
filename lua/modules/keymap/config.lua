@@ -42,17 +42,6 @@ function config.whichkey()
   }, { prefix = '<Space>' })
 end
 
-function config.keymapamend()
-  local keymap = vim.keymap
-  keymap.amend = require('keymap-amend')
-  keymap.amend('n', '<Esc>', function(original)
-    if vim.v.hlsearch and vim.v.hlsearch == 1 then
-      vim.cmd('nohlsearch')
-    end
-    original()
-  end, { desc = 'disable search highlight' })
-end
-
 function config.legendary()
   require('legendary').setup({
 
@@ -330,19 +319,4 @@ function config.legendary()
     },
   })
 end
-
---  function config.mapx()
---  require("mapx").setup{ global = true, whichkey = true  }
---  require("modules.keymap.map")
---  end
-
-function config.hydra()
-  require('modules.keymap.hydra')
-end
-
 return config
-
---
--- -- Or maybe you do a lot of screen-casts and want to call attention to a specific line of code:
--- -- vim.api.nvim_set_vim.keymap.set('n', '<leader>v', ':lua require("specs").show_specs({width = 97, winhl = "Search", delay_ms = 610, inc_ms = 21})<CR>', { noremap = true, silent = true })
--- -- Lua

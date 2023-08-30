@@ -1,4 +1,11 @@
 local config = {}
+local vim = vim
+
+function config.colorscheme()
+  vim.cmd('colorscheme paradox')
+end
+
+function config.tabby() end
 
 function config.cokeline()
   prequire('modules.ui.cokeline')
@@ -12,9 +19,11 @@ function config.cokeline()
     map('n', ('<Leader>b%s'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
   end
 end
+
 function config.feline()
   prequire('modules.ui.feline')
 end
+
 function config.noice()
   require('modules.ui.noice')
 end
@@ -71,25 +80,12 @@ function config.indentscope()
   })
 end
 
---function config.colorscheme()
---  vim.cmd([[colorscheme tokyonight]])
---end
---function config.cursorline() -- TODO
---  prequire('nvim-cursorline').setup()
---end
-function config.barbecue()
-  prequire('barbecue').setup({
-    include_buftypes = { '' },
-  })
-end
 function config.notify()
   prequire('notify').setup({
     background_colour = '#000000',
   })
 end
---function config.nvimcontextvt()
---  prequire('nvim_context_vt').setup({})
---end
+
 function config.numbers()
   prequire('numbers').setup({
     excluded_filetypes = {
@@ -103,34 +99,56 @@ function config.numbers()
   })
 end
 
-function config.transparent()
-  prequire('transparent').setup({
-    enable = false, -- boolean: enable transparent
-    extra_groups = { -- table/string: additional groups that should be cleared
-      'all',
+function config.illuminate()
+  -- default configuration
+  require('illuminate').configure({
+    -- providers: provider used to get references in the buffer, ordered by priority
+    providers = {
+      'lsp',
+      'treesitter',
+      'regex',
     },
-    exclude = {}, -- table: groups you don't want to clear
+    -- delay: delay in milliseconds
+    delay = 100,
+    -- filetype_overrides: filetype specific overrides.
+    -- The keys are strings to represent the filetype while the values are tables that
+    -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist
+    filetype_overrides = {},
+    -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
+    filetypes_denylist = {
+      'dirvish',
+      'fugitive',
+    },
+    -- filetypes_allowlist: filetypes to illuminate, this is overridden by filetypes_denylist
+    filetypes_allowlist = {},
+    -- modes_denylist: modes to not illuminate, this overrides modes_allowlist
+    -- See `:help mode()` for possible values
+    modes_denylist = {},
+    -- modes_allowlist: modes to illuminate, this is overridden by modes_denylist
+    -- See `:help mode()` for possible values
+    modes_allowlist = {},
+    -- providers_regex_syntax_denylist: syntax to not illuminate, this overrides providers_regex_syntax_allowlist
+    -- Only applies to the 'regex' provider
+    -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+    providers_regex_syntax_denylist = {},
+    -- providers_regex_syntax_allowlist: syntax to illuminate, this is overridden by providers_regex_syntax_denylist
+    -- Only applies to the 'regex' provider
+    -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+    providers_regex_syntax_allowlist = {},
+    -- under_cursor: whether or not to illuminate under the cursor
+    under_cursor = true,
+    -- large_file_cutoff: number of lines at which to use large_file_config
+    -- The `under_cursor` option is disabled when this cutoff is hit
+    large_file_cutoff = nil,
+    -- large_file_config: config to use for large files (based on large_file_cutoff).
+    -- Supports the same keys passed to .configure
+    -- If nil, vim-illuminate will be disabled for large files.
+    large_file_overrides = nil,
+    -- min_count_to_highlight: minimum number of matches required to perform highlighting
+    min_count_to_highlight = 1,
   })
 end
-function config.specs()
-  prequire('specs').setup({
-    show_jumps = true,
-    min_jump = 30,
-    popup = {
-      delay_ms = 0, -- delay before popup displays
-      inc_ms = 10, -- time increments used for fade/resize effects
-      blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
-      width = 10,
-      winhl = 'PMenu',
-      fader = prequire('specs').linear_fader,
-      resizer = prequire('specs').shrink_resizer,
-    },
-    ignore_filetypes = {},
-    ignore_buftypes = {
-      nofile = true,
-    },
-  })
-end
+
 function config.todocomment()
   prequire('todo-comments').setup({
     highlight = {
@@ -138,5 +156,15 @@ function config.todocomment()
     },
   })
 end
+
+-- function config.transparent()
+--   prequire('transparent').setup({
+--     enable = false, -- boolean: enable transparent
+--     extra_groups = { -- table/string: additional groups that should be cleared
+--       'all',
+--     },
+--     exclude = {}, -- table: groups you don't want to clear
+--   })
+-- end
 
 return config

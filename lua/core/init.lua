@@ -1,4 +1,4 @@
-local g, api = vim.g, vim.api
+local g = vim.g
 g.loaded_gzip = 1
 g.loaded_tar = 1
 g.loaded_tarPlugin = 1

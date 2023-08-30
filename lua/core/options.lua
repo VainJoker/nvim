@@ -1,3 +1,4 @@
+local vim = vim
 local opt = vim.opt
 local cache_dir = require('core.helper').get_cache_path()
 

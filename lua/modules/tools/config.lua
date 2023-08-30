@@ -2,9 +2,11 @@ local config = {}
 function config.telescope()
   require('modules.tools.telescope')
 end
-function config.leap()
-  require('leap').add_default_mappings()
+
+function config.insx()
+  require('insx.preset.standard').setup()
 end
+
 function config.comment()
   require('mini.comment').setup({
     options = {
@@ -14,72 +16,25 @@ function config.comment()
     },
   })
 end
+
 function config.neogit()
   require('neogit').setup()
 end
-function config.dap()
-  require('modules.tools.dap')
-end
-function config.dapui()
-  require('dapui').setup({})
-end
-function config.dapvirtualtext()
-  require('nvim-dap-virtual-text').setup()
-end
-function config.cinnamon()
-  require('cinnamon').setup({
-    extra_keymaps = true,
-    override_keymaps = true,
-    max_length = 500,
-    scroll_limit = -1,
-  })
-end
-function config.pantran()
-  require('pantran').setup({
-    default_engine = 'deepl',
-    engines = {
-      yandex = {
-        -- Default languages can be defined on a per engine basis. In this case
-        -- `:lua require("pantran.async").run(function()
-        -- vim.pretty_print(require("pantran.engines").yandex:languages()) end)`
-        -- can be used to list available language identifiers.
-        default_source = 'auto',
-        default_target = 'cn',
-      },
-    },
-  })
-end
+
+-- function config.dap()
+--   require('modules.tools.dap')
+-- end
+-- function config.dapui()
+--   require('dapui').setup({})
+-- end
+-- function config.dapvirtualtext()
+--   require('nvim-dap-virtual-text').setup()
+-- end
 function config.lastplace()
   require('nvim-lastplace').setup({
     lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
     lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
     lastplace_open_folds = true,
-  })
-end
-
-function config.betterescape()
-  require('better_escape').setup({})
-end
-
-function config.windows()
-  require('windows').setup({
-    autowidth = { --		       |windows.autowidth|
-      enable = true,
-      winwidth = 5, --		        |windows.winwidth|
-      filetype = { --	      |windows.autowidth.filetype|
-        help = 2,
-      },
-    },
-    ignore = { --			  |windows.ignore|
-      buftype = { 'quickfix' },
-      filetype = { 'NvimTree', 'lspsagaoutline', 'dapui', 'neo-tree', 'undotree', 'gundo' },
-    },
-    animation = {
-      enable = true,
-      duration = 300,
-      fps = 30,
-      easing = 'in_out_sine',
-    },
   })
 end
 
@@ -107,21 +62,23 @@ function config.neotree()
   vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 end
 
-function config.nvimwindpicker()
-  require('window-picker').setup({
-    autoselect_one = true,
-    include_current = false,
-    filter_rules = {
-      -- filter using buffer options
-      bo = {
-        -- if the file type is one of following, the window will be ignored
-        filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+function config.guard()
+  local ft = require('guard.filetype')
 
-        -- if the buffer type is one of following, the window will be ignored
-        buftype = { 'terminal', 'quickfix' },
-      },
-    },
-    other_win_hl_color = '#e35e4f',
+  ft('c'):fmt('clang-format')
+  :lint('clang-tidy')
+  ft('go'):fmt('lsp')
+  :append('golines')
+  ft('typescript,javascript,typescriptreact'):fmt('prettier')
+  ft('rust'):fmt('rustfmt')
+  ft('lua'):fmt('stylua')
+
+  -- Call setup() LAST!
+  require('guard').setup({
+    -- the only options for the setup function
+    fmt_on_save = true,
+    -- Use lsp if no formatter was defined for this filetype
+    lsp_as_default_formatter = false,
   })
 end
 
