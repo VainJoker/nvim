@@ -53,7 +53,7 @@ return {
   { 'ray-x/go.nvim', ft = 'go', config = config.go, dependencies = { 'ray-x/guihua.lua' } },
   { 'NvChad/nvim-colorizer.lua', event = 'VeryLazy', config = true },
   { 'nvim-colortils/colortils.nvim', event = 'VeryLazy', config = true },
-  { 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
+  --{ 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
   { 'echasnovski/mini.animate', version = false, event = 'VeryLazy', config = true },
   { 'echasnovski/mini.hipatterns', version = false, event = 'VeryLazy', config = true },
   { 'TimUntersberger/neogit', event = 'VeryLazy', config = true },
@@ -79,12 +79,12 @@ return {
     },
     config = config.ufo,
   },
+  {'axkirillov/hbac.nvim',event = 'VeryLazy',config = true,},
   { 'hrsh7th/nvim-insx', event = 'InsertEnter', branch = 'main', config = config.insx },
   { 'kylechui/nvim-surround', version = '*', event = 'VeryLazy', config = true },
   { 'mrjones2014/legendary.nvim', event = 'VeryLazy', config = config.legendary },
 
   { 'ethanholz/nvim-lastplace', event = { 'BufReadPre', 'BufNewFile' }, config = true },
-  { 'echasnovski/mini.ai', event = 'VeryLazy', dependencies = { 'RRethy/nvim-treesitter-textobjects' }, config = true },
   {
     'echasnovski/mini.comment',
     event = 'VeryLazy',
