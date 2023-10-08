@@ -63,17 +63,6 @@ function config.neotree()
 end
 
 function config.guard()
-  local ft = require('guard.filetype')
-
-  ft('c'):fmt('clang-format')
-  :lint('clang-tidy')
-  ft('go'):fmt('lsp')
-  :append('golines')
-  ft('typescript,javascript,typescriptreact'):fmt('prettier')
-  ft('rust'):fmt('rustfmt')
-  ft('lua'):fmt('stylua')
-
-  -- Call setup() LAST!
   require('guard').setup({
     -- the only options for the setup function
     fmt_on_save = true,

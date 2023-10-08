@@ -52,12 +52,6 @@ function config.legendary()
       -- keymaps have opts.silent = true by default, but you can override it
       -- create keymaps with different implementations per-mode
       {
-        '<C-CR>',
-        '<ESC>$a',
-        description = 'Insert at end of line',
-        opts = { silent = true },
-      },
-      {
         '<leader>bb',
         '<cmd>Telescope buffers<CR>',
         description = 'Buffer list',
