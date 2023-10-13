@@ -40,10 +40,10 @@ return {
   { 'nvimdev/dashboard-nvim', event = 'VimEnter', config = config.dashborad },
   { 'windwp/nvim-ts-autotag', event = 'InsertEnter', config = true },
   { 'windwp/nvim-autopairs', event = 'InsertEnter', config = config.autopairs },
+  { 'karb94/neoscroll.nvim', event = 'VeryLazy', config = true },
   { 'keaising/im-select.nvim', event = 'InsertEnter', config = config.imselect },
   { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', config = true },
   { 'nvim-telescope/telescope.nvim', cmd = 'Telescope', version = false, config = config.telescope },
-  { 'nvim-pack/nvim-spectre', event = 'VeryLazy', config = true },
   { 'freddiehaddad/feline.nvim', event = 'VeryLazy', config = config.feline },
   { 'noib3/cokeline.nvim', event = 'VeryLazy', config = config.cokeline },
   { 'akinsho/toggleterm.nvim', event = 'VeryLazy', version = '*', config = true },
@@ -59,7 +59,6 @@ return {
   { 'TimUntersberger/neogit', event = 'VeryLazy', config = true },
   { 'nkakouros-original/numbers.nvim', event = 'VeryLazy', config = config.numbers },
   { 'RRethy/vim-illuminate', event = 'VeryLazy', config = config.illuminate },
-  { 'tenxsoydev/karen-yank.nvim', event = 'VeryLazy', config = true },
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -67,12 +66,11 @@ return {
     cmd = 'Neotree',
     config = config.neotree,
   },
-  { 'simrat39/rust-tools.nvim', event = 'VeryLazy', config = config.rust },
+  { 'simrat39/rust-tools.nvim', ft = 'rust', config = config.rust },
   { 'Saecki/crates.nvim', event = 'BufRead Cargo.toml', config = true },
-  -- TODO
   {
     'kevinhwang91/nvim-ufo',
-    event = 'BufRead',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       { 'kevinhwang91/promise-async' },
       { 'anuvyklack/fold-preview.nvim', config = true },
@@ -83,7 +81,6 @@ return {
   { 'hrsh7th/nvim-insx', event = 'InsertEnter', branch = 'main', config = config.insx },
   { 'kylechui/nvim-surround', version = '*', event = 'VeryLazy', config = true },
   { 'mrjones2014/legendary.nvim', event = 'VeryLazy', config = config.legendary },
-
   { 'ethanholz/nvim-lastplace', event = { 'BufReadPre', 'BufNewFile' }, config = true },
   {
     'echasnovski/mini.comment',
@@ -117,7 +114,7 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    branch = 'v2.x',
+    branch = 'v3.x',
     config = config.lspzero,
     dependencies = {
       { 'neovim/nvim-lspconfig' },

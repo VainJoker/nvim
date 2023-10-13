@@ -255,6 +255,24 @@ function config.legendary()
         },
         -- {'gR', '<cmd>TroubleToggle lsp_references<cr>', { silent = true, noremap = true }},
       },
+      {
+        itemgroup = 'Fold',
+        description = 'Fold',
+        keymaps = {
+          {
+            'zR',
+            '<cmd>lua require("ufo").openAllFolds()<CR>',
+            description = 'openAllFolds',
+          },
+          {
+            'zM',
+            '<cmd>lua require("ufo").closeAllFolds()<CR>',
+            description = 'closeAllFolds',
+          },
+        },
+        -- {'gR', '<cmd>TroubleToggle lsp_references<cr>', { silent = true, noremap = true }},
+      },
+
       -- create item groups to create sub-menus in the finder
       -- -- note that only keymaps, commands, and functions
       -- -- can be added to item groups

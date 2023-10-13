@@ -19,7 +19,7 @@ function config.lspsaga()
     },
     lightbulb = {
       enable = true,
-      enable_in_insert = true,
+      enable_in_insert = false,
       sign = false,
       sign_priority = 40,
       virtual_text = true,
@@ -85,6 +85,7 @@ function config.rust()
   local liblldb_path = vim.fn.has('mac') == 1 and extension_path .. 'lldb/lib/liblldb.dylib'
     or extension_path .. 'lldb/lib/liblldb.so'
   local adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+
   prequire('rust-tools').setup({
     dap = {
       adapter = adapter,
@@ -99,6 +100,9 @@ function config.rust()
         augroup END
         ]])
       end,
+      inlay_hints = {
+        auto = false,
+      },
     },
   })
 end
@@ -119,14 +123,6 @@ function config.treesitter()
     highlight = {
       enable = true,
     },
-    --rainbow = {
-    --  enable = true,
-    --  -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    --  extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    --  max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    --  -- colors = {}, -- table of hex strings
-    --  -- termcolors = {} -- table of colour name strings
-    --},
   })
 end
 

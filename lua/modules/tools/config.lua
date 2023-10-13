@@ -21,15 +21,6 @@ function config.neogit()
   require('neogit').setup()
 end
 
--- function config.dap()
---   require('modules.tools.dap')
--- end
--- function config.dapui()
---   require('dapui').setup({})
--- end
--- function config.dapvirtualtext()
---   require('nvim-dap-virtual-text').setup()
--- end
 function config.lastplace()
   require('nvim-lastplace').setup({
     lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
@@ -68,6 +59,39 @@ function config.guard()
     fmt_on_save = true,
     -- Use lsp if no formatter was defined for this filetype
     lsp_as_default_formatter = false,
+  })
+end
+
+function config.ufo()
+  local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+      local chunkText = chunk[1]
+      local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      if targetWidth > curWidth + chunkWidth then
+        table.insert(newVirtText, chunk)
+      else
+        chunkText = truncate(chunkText, targetWidth - curWidth)
+        local hlGroup = chunk[2]
+        table.insert(newVirtText, { chunkText, hlGroup })
+        chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        -- str width returned from truncate() may less than 2nd argument, need padding
+        if curWidth + chunkWidth < targetWidth then
+          suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+        end
+        break
+      end
+      curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, 'MoreMsg' })
+    return newVirtText
+  end
+  require('ufo').setup({
+    fold_virt_text_handler = handler,
   })
 end
 
