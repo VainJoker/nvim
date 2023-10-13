@@ -4,7 +4,7 @@ lsp_zero.preset({
 })
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua-language-server', 'gopls', 'rust-analyzer' },
+  ensure_installed = { 'lua_ls', 'gopls', 'rust_analyzer' },
   handlers = {
     lsp_zero.default_setup,
   },

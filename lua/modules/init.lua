@@ -45,7 +45,7 @@ return {
   { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', config = true },
   { 'nvim-telescope/telescope.nvim', cmd = 'Telescope', version = false, config = config.telescope },
   { 'freddiehaddad/feline.nvim', event = 'VeryLazy', config = config.feline },
-  { 'noib3/cokeline.nvim', event = 'VeryLazy', config = config.cokeline },
+  { 'willothy/nvim-cokeline', event = 'VeryLazy', config = config.cokeline },
   { 'akinsho/toggleterm.nvim', event = 'VeryLazy', version = '*', config = true },
   { 'nvimdev/guard.nvim', event = 'VeryLazy', dependencies = 'nvimdev/guard-collection', config = config.guard },
   { 'sindrets/diffview.nvim', event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
@@ -73,7 +73,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       { 'kevinhwang91/promise-async' },
-      { 'anuvyklack/fold-preview.nvim', config = true },
+      { 'anuvyklack/fold-preview.nvim', dependencies = 'anuvyklack/keymap-amend.nvim',config = config.foldpreview },
     },
     config = config.ufo,
   },
