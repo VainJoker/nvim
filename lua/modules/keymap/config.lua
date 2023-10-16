@@ -1,56 +1,9 @@
 local config = {}
 
-function config.whichkey()
-  local wk = require('which-key')
-  wk.setup({
-    plugins = {
-      spelling = true,
-    },
-    icons = {
-      breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
-      separator = '➜', -- symbol used between a key and it's label
-      group = '+', -- symbol prepended to a group
-    },
-    popup_mappings = {
-      scroll_down = '<c-n>', -- binding to scroll down inside the popup
-      scroll_up = '<c-p>', -- binding to scroll up inside the popup
-    },
-    window = {
-      border = 'shadow', -- none, single, double, shadow
-      position = 'bottom', -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
-    layout = {
-      height = { min = 4, max = 25 }, -- min and max height of the columns
-      width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-      align = 'left', -- align columns left, center or right
-    },
-    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
-    -- disable the WhichKey popup for certain buf types and file types.
-    -- Disabled by deafult for Telescope
-    disable = {
-      buftypes = {},
-      filetypes = { 'TelescopePrompt' },
-    },
-  })
-  wk.register({
-    --some custom key mappings.
-  }, { prefix = '<Space>' })
-end
-
 function config.legendary()
   require('legendary').setup({
 
     keymaps = {
-      -- map keys to a command
-      --{ '<leader>ff', ':Telescope find_files<CR>', description = 'Find files' },
-      -- map keys to a function
-      -- keymaps have opts.silent = true by default, but you can override it
-      -- create keymaps with different implementations per-mode
       {
         '<leader>bb',
         '<cmd>Telescope buffers<CR>',
@@ -69,16 +22,154 @@ function config.legendary()
         description = 'Toggle comment',
       },
       {
-        '<leader>e',
-        '<cmd>NeoTreeFocusToggle<CR>',
-        description = 'NeoTree',
+        '<leader>E',
+        '<cmd>Neotree<CR>',
+        description = 'Neotree',
         opts = { silent = true },
       },
       {
-        '<leader>V',
-        '<cmd>Whereami<CR>',
-        description = 'Where am I',
+        '<leader>Q',
+        '<cmd>quit<CR>',
+        description = 'Quit',
         opts = { silent = false },
+      },
+      {
+        '<leader>G',
+        '<cmd>Neogit<CR>',
+        description = 'Neogit',
+        opts = { silent = true },
+      },
+      {
+        itemgroup = 'Telescope',
+        description = 'Telescope',
+        keymaps = {
+          {
+            '<Leader>ff',
+            '<cmd>Telescope find_files<CR>',
+            description = 'Find Files',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fF',
+            '<cmd>Telescope find_files cwd=~<CR>',
+            description = 'Find Files (cwd)',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fR',
+            '<cmd>Telescope oldfiles<CR>',
+            description = 'Recent Files',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>f/',
+            '<cmd>Telescope live_grep<CR>',
+            description = 'Grep (root dir)',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>f:',
+            '<cmd>Telescope command_history<CR>',
+            description = 'Command History',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fb',
+            '<cmd>Telescope buffers show_all_buffers=true<CR>',
+            description = 'Switch Buffer',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fgc',
+            '<cmd>Telescope git_commits<CR>',
+            description = 'Git Commits',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fgs',
+            '<cmd>Telescope git_status<CR>',
+            description = 'Git Status',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fr',
+            '<cmd>Telescope registers<CR>',
+            description = 'Registers',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsa',
+            '<cmd>Telescope autocommands<CR>',
+            description = 'Auto Commands',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsb',
+            '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+            description = 'Buffer',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsc',
+            '<cmd>Telescope command_history<CR>',
+            description = 'Command History',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsC',
+            '<cmd>Telescope commands<CR>',
+            description = 'Commands',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsd',
+            '<cmd>Telescope diagnostics bufnr=0<CR>',
+            description = 'Document diagnostics',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsD',
+            '<cmd>Telescope diagnostics<CR>',
+            description = 'Workspace diagnostics',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsh',
+            '<cmd>Telescope help_tags<CR>',
+            description = 'Help Pages',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsH',
+            '<cmd>Telescope highlights<CR>',
+            description = 'Search Highlight Groups',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsk',
+            '<cmd>Telescope keymaps<CR>',
+            description = 'Key Maps',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fsM',
+            '<cmd>Telescope man_pages',
+            description = 'Man Pages',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fso',
+            '<cmd>Telescope vim_options<CR>',
+            description = 'Options',
+            opts = { silent = true },
+          },
+          {
+            '<Leader>fC',
+            '<cmd>Telescope colorscheme<CR>',
+            description = 'Colorscheme',
+            opts = { silent = true },
+          }
+        },
       },
       {
         itemgroup = 'LSP',
@@ -145,18 +236,6 @@ function config.legendary()
             opts = { silent = true },
           },
           {
-            '<C>-t',
-            '<cmd>Lspsaga term_toggle<CR>',
-            description = 'LSP Open Floaterm',
-            opts = { silent = true },
-          },
-          -- {
-          --   '<Leader>l<space>',
-          --   '<cmd>Lspsaga signature_help<CR>',
-          --   description = 'LSP Signature Help',
-          --   opts = { silent = true },
-          -- },
-          {
             '<Leader>l[',
             '<cmd>Lspsaga diagnostic_jump_prev<CR>',
             description = 'LSP Diagnostic Jump Prev',
@@ -219,6 +298,62 @@ function config.legendary()
         },
       },
       {
+        itemgroup = 'Persistence',
+        description = 'Persistence',
+        keymaps = {
+          {
+            '<Leader>qs',
+            [[<cmd>lua require("persistence").load()<cr>]],
+            description = 'Restore the session for the current directory',
+          },
+          {
+            '<Leader>ql',
+            [[<cmd>lua require("persistence").load({ last = true })<cr>]],
+            description = 'Restore the last session',
+          },
+          {
+            '<Leader>qd',
+            [[<cmd>lua require("persistence").stop()<cr>]],
+          }
+        }
+      },
+      {
+        itemgroup = 'Flash',
+        description = 'Flash',
+        keymaps = {
+          {
+            's',
+            '<cmd>lua require("flash").jump()<CR>',
+            description = 'Flash',
+            opts = { silent = true },
+          },
+          {
+            'S',
+            '<cmd>lua require("flash").treesitter()<CR>',
+            description = 'Flash Treesitter',
+            opts = { silent = true },
+          },
+          {
+            'r',
+            '<cmd>lua require("flash").remote()<CR>',
+            description = 'Remote Flash',
+            opts = { silent = true },
+          },
+          {
+            'R',
+            '<cmd>lua require("flash").treesitter_search()<CR>',
+            description = 'Treesitter Search',
+            opts = { silent = true },
+          },
+          {
+            '<C-s>',
+            '<cmd>lua require("flash").toggle()<CR>',
+            description = 'Toggle Flash Search',
+            opts = { silent = true },
+          },
+        }
+      },
+      {
         itemgroup = 'Trouble',
         description = 'Trouble',
         keymaps = {
@@ -272,7 +407,68 @@ function config.legendary()
         },
         -- {'gR', '<cmd>TroubleToggle lsp_references<cr>', { silent = true, noremap = true }},
       },
-
+      {
+        itemgroup = 'Todo',
+        description = 'Todo',
+        keymaps = {
+          {
+            '<leader>tn',
+            '<cmd>TodoTelescope<CR>',
+            description = 'Next todo comment',
+          },
+          {
+            '<leader>tp',
+            '<cmd>TodoTelescope prev<CR>',
+            description = 'Previous todo comment',
+          },
+          {
+            '<leader>tx',
+            '<cmd>TodoTrouble<CR>',
+            description = 'Todo (Trouble)',
+          },
+          {
+            '<leader>tX',
+            '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<CR>',
+            description = 'Todo/Fix/Fixme (Trouble)',
+          },
+          {
+            '<leader>tf',
+            '<cmd>TodoTelescope<CR>',
+            description = 'Todo',
+          },
+          {
+            '<leader>tF',
+            '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<CR>',
+            description = 'Todo/Fix/Fixme',
+          },
+        },
+      },
+      {
+        itemgroup = 'Noice',
+        description = 'Noice',
+        keymaps = {
+          {
+            '<leader>snl',
+            '<cmd>NoiceLast<CR>',
+            description = 'Noice Last Message',
+          },
+          {
+            '<leader>snh',
+            '<cmd>NoiceHistory<CR>',
+            description = 'Noice History',
+          },
+          {
+            '<leader>sna',
+            '<cmd>NoiceAll<CR>',
+            description = 'Noice All',
+          },
+          {
+            '<leader>snd',
+            '<cmd>NoiceDismiss<CR>',
+            description = 'Dismiss All',
+          },
+        },
+      },
       -- create item groups to create sub-menus in the finder
       -- -- note that only keymaps, commands, and functions
       -- -- can be added to item groups
@@ -289,13 +485,6 @@ function config.legendary()
     },
     commands = {
       -- easily create user commands
-      {
-        ':Whereami',
-        function()
-          require('specs').show_specs({ width = 97, winhl = 'Search', delay_ms = 610, inc_ms = 21 })
-        end,
-        description = 'Where am I',
-      },
       -- {
       --   -- groups with same itemgroup will be merged
       --   itemgroup = 'short ID',
