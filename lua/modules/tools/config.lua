@@ -22,10 +22,6 @@ function config.neogit()
 end
 
 function config.flash()
-  -- require("flash").jump({
-  --   -- search = { toggle = false },
-  --   char = { jump_labels = true }
-  -- })
 end
 
 function config.lastplace()
