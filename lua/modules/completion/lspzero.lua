@@ -4,17 +4,17 @@ lsp_zero.preset({
 })
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'gopls', 'rust_analyzer' },
+  ensure_installed = { 'lua_ls' },
   handlers = {
     lsp_zero.default_setup,
   },
 })
 
-lsp_zero.on_attach(function(client, bufnr)
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
-  end
-end)
+-- lsp_zero.on_attach(function(client, bufnr)
+  -- if client.server_capabilities.inlayHintProvider then
+  --   vim.lsp.inlay_hint(bufnr, true)
+  -- end
+-- end)
 
 lsp_zero.set_server_config({
   capabilities = {

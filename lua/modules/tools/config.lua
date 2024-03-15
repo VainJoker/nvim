@@ -21,6 +21,13 @@ function config.neogit()
   require('neogit').setup()
 end
 
+function config.flash()
+  -- require("flash").jump({
+  --   -- search = { toggle = false },
+  --   char = { jump_labels = true }
+  -- })
+end
+
 function config.lastplace()
   require('nvim-lastplace').setup({
     lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
@@ -43,9 +50,9 @@ end
 
 function config.neotree()
   vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-  vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-  vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-  vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+  vim.fn.sign_define('DiagnosticSignWarn', { text = '  ', texthl = 'DiagnosticSignWarn' })
+  vim.fn.sign_define('DiagnosticSignInfo', { text = '  ', texthl = 'DiagnosticSignInfo' })
+  vim.fn.sign_define('DiagnosticSignHint', { text = ' ', texthl = 'DiagnosticSignHint' })
 
   require('neo-tree').setup({
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
@@ -161,6 +168,24 @@ function config.whichkey()
   wk.register({
     --some custom key mappings.
   }, { prefix = '<Space>' })
+end
+
+function config.norg()
+  require("neorg").setup {
+    load = {
+      ["core.defaults"] = {}, -- Loads default behaviour
+      ["core.concealer"] = {}, -- Adds pretty icons to your documents
+      ["core.dirman"] = { -- Manages Neorg workspaces
+        config = {
+          workspaces = {
+            -- notes = "~/Notes",
+            default = "~/Notes",
+            journal = "~/Notes",
+          },
+        },
+      },
+    },
+  }
 end
 
 

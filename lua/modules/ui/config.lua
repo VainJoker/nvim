@@ -2,7 +2,7 @@ local config = {}
 local vim = vim
 
 function config.colorscheme()
-  vim.cmd('colorscheme paradox')
+  vim.cmd('colorscheme everforest')
 end
 
 function config.tabby() end

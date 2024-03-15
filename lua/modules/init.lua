@@ -23,7 +23,8 @@ end
 
 return {
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
-  { 'nvimdev/paradox.vim', lazy = false, config = config.colorscheme },
+  --{ 'nvimdev/paradox.vim', lazy = false, config = config.colorscheme },
+  { 'sainnhe/everforest', lazy = false, config = config.colorscheme },
   {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -34,7 +35,7 @@ return {
   { 'folke/trouble.nvim', cmd = 'TroubleToggle', config = true },
   { 'folke/persistence.nvim', event = 'BufReadPre', config = true },
   { 'folke/todo-comments.nvim', event = 'VeryLazy', config = config.todocomment },
-  { 'folke/flash.nvim', event = 'VeryLazy', config = true },
+  { 'folke/flash.nvim', event = 'VeryLazy', config = config.flash },
   { 'folke/edgy.nvim', event = 'VeryLazy', config = true },
   { 'nvimdev/hlsearch.nvim', event = 'BufRead', config = true },
   { 'nvimdev/dashboard-nvim', event = 'VimEnter', config = config.dashborad },
@@ -53,12 +54,13 @@ return {
   { 'ray-x/go.nvim', ft = 'go', config = config.go, dependencies = { 'ray-x/guihua.lua' } },
   { 'NvChad/nvim-colorizer.lua', event = 'VeryLazy', config = true },
   { 'nvim-colortils/colortils.nvim', event = 'VeryLazy', config = true },
-  { 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
+  --{ 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
   { 'echasnovski/mini.animate', version = false, event = 'VeryLazy', config = true },
   { 'echasnovski/mini.hipatterns', version = false, event = 'VeryLazy', config = true },
   { 'TimUntersberger/neogit', event = 'VeryLazy', config = true },
   { 'nkakouros-original/numbers.nvim', event = 'VeryLazy', config = config.numbers },
   { 'RRethy/vim-illuminate', event = 'VeryLazy', config = config.illuminate },
+  {"jackMort/ChatGPT.nvim",event = "VeryLazy",config = true},
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -66,7 +68,13 @@ return {
     cmd = 'Neotree',
     config = config.neotree,
   },
-  { 'simrat39/rust-tools.nvim', ft = 'rust', config = config.rust },
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    lazy = false,
+    config = config.norg,
+  },
+  { 'mrcjkb/rustaceanvim', version = '^3', ft = 'rust', config = config.rust },
   { 'Saecki/crates.nvim', event = 'BufRead Cargo.toml', config = true },
   {
     'kevinhwang91/nvim-ufo',

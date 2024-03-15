@@ -2,6 +2,9 @@ local config = {}
 
 function config.lspsaga()
   prequire('lspsaga').setup({
+    -- breadcrumbs = {
+    --   enable = false,
+    -- },
     outline = {
       win_position = 'right',
       win_with = '',
@@ -30,11 +33,11 @@ function config.lspsaga()
       -- border type can be single,double,rounded,solid,shadow.
       border = 'solid',
       winblend = 0,
-      expand = '',
-      collapse = '',
-      preview = ' ',
-      code_action = '💡',
-      diagnostic = '🐞',
+      expand = ' ',
+      collapse = ' ',
+      preview = '  ',
+      code_action = ' ',
+      diagnostic = ' ',
       incoming = ' ',
       outgoing = ' ',
       colors = {
@@ -53,7 +56,9 @@ function config.lspsaga()
         white = '#d1d4cf',
         black = '#1c1c19',
       },
-      kind = {},
+      kind = {
+
+      },
     },
   })
   local augroup = vim.api.nvim_create_augroup
@@ -80,31 +85,31 @@ function config.lspsaga()
 end
 
 function config.rust()
-  local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/'
-  local codelldb_path = extension_path .. 'adapter/codelldb'
-  local liblldb_path = vim.fn.has('mac') == 1 and extension_path .. 'lldb/lib/liblldb.dylib'
-    or extension_path .. 'lldb/lib/liblldb.so'
-  local adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+  -- local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/'
+  -- local codelldb_path = extension_path .. 'adapter/codelldb'
+  -- local liblldb_path = vim.fn.has('mac') == 1 and extension_path .. 'lldb/lib/liblldb.dylib'
+  --   or extension_path .. 'lldb/lib/liblldb.so'
+  -- local adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
 
-  prequire('rust-tools').setup({
-    dap = {
-      adapter = adapter,
-    },
-    tools = {
-      on_initialized = function()
-        vim.cmd([[
-        augroup RustLSP
-        autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-        autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-        augroup END
-        ]])
-      end,
-      inlay_hints = {
-        auto = false,
-      },
-    },
-  })
+  -- prequire('rust-tools').setup({
+  --   dap = {
+  --     adapter = adapter,
+  --   },
+  --   tools = {
+  --     on_initialized = function()
+  --       vim.cmd([[
+  --       augroup RustLSP
+  --       autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+  --       autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+  --       autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+  --       augroup END
+  --       ]])
+  --     end,
+  --     inlay_hints = {
+  --       auto = false,
+  --     },
+  --   },
+  -- })
 end
 
 function config.go()
