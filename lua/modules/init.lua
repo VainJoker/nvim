@@ -23,7 +23,8 @@ end
 
 return {
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
-  { 'nvimdev/paradox.vim', lazy = false, config = config.colorscheme },
+  --{ 'nvimdev/paradox.vim', lazy = false, config = config.colorscheme },
+  { 'folke/tokyonight.nvim', lazy = false, config = config.colorscheme },
   {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -53,9 +54,8 @@ return {
   { 'ray-x/go.nvim', ft = 'go', config = config.go, dependencies = { 'ray-x/guihua.lua' } },
   { 'NvChad/nvim-colorizer.lua', event = 'VeryLazy', config = true },
   { 'nvim-colortils/colortils.nvim', event = 'VeryLazy', config = true },
-  { 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
+  --{ 'zbirenbaum/copilot.lua', event = 'InsertEnter', build = ':Copilot auth', config = config.copilot },
   { 'echasnovski/mini.animate', version = false, event = 'VeryLazy', config = true },
-  { 'echasnovski/mini.hipatterns', version = false, event = 'VeryLazy', config = true },
   { 'TimUntersberger/neogit', event = 'VeryLazy', config = true },
   { 'nkakouros-original/numbers.nvim', event = 'VeryLazy', config = config.numbers },
   { 'RRethy/vim-illuminate', event = 'VeryLazy', config = config.illuminate },
@@ -66,7 +66,13 @@ return {
     cmd = 'Neotree',
     config = config.neotree,
   },
-  { 'simrat39/rust-tools.nvim', ft = 'rust', config = config.rust },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+  },
+  --{ dir = "~/Codes/aio-rust.nvim", lazy = false , config = true},
+
   { 'Saecki/crates.nvim', event = 'BufRead Cargo.toml', config = true },
   {
     'kevinhwang91/nvim-ufo',

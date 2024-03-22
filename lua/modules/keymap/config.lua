@@ -5,6 +5,12 @@ function config.legendary()
 
     keymaps = {
       {
+        '<leader>ii',
+        '<cmd>lua require"rust-tools".setup()<CR>',
+        description = 'Buffer list',
+        opts = { noremap = true, silent = true },
+      },
+      {
         '<leader>bb',
         '<cmd>Telescope buffers<CR>',
         description = 'Buffer list',
@@ -15,11 +21,6 @@ function config.legendary()
         '<cmd>bdelete<CR>',
         description = 'Buffer delete ',
         opts = { noremap = true, silent = true },
-      },
-      {
-        '<leader>cc',
-        { n = '<cmd>CommentToggle<CR>', x = ":'<,'>CommentToggle<CR>" },
-        description = 'Toggle comment',
       },
       {
         '<leader>E',
@@ -183,7 +184,7 @@ function config.legendary()
           },
           {
             '<Leader>ls',
-            '<cmd>Lspsaga lsp_finder<CR>',
+            '<cmd>Lspsaga finder<CR>',
             description = 'LSP Finder',
             opts = { silent = true },
           },
